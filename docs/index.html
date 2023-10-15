@@ -2,25 +2,23 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title></title>
+    <title>Prisma DMMF Viewer</title>
     <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="json-tree.css" />
     <script type="module" src="prisma_schema.js"></script>
     <script type="module" src="index.js"></script>
   </head>
   <body>
-    <main>
-      <form id="dmmf">
-        <div>
-          <label>
-            <span>schema.prisma</span>
-            <textarea id="schema" rows="15"></textarea>
-          </label>
-        </div>
-        <nav>
-          <button type="submit" id="btn_convert">get DMMF</button>
-        </nav>
-        <output id="output_dmmf" name="dmmf" for="schema"></output>
-      </form>
-    </main>
+    <form id="dmmf">
+      <label class="editor">
+        <span>schema.prisma</span>
+        <textarea id="schema"></textarea>
+      </label>
+      <nav class="button">
+        <!-- <button type="button" id="btn_format">Format schema</button> -->
+        <button type="submit" id="btn_convert">Get DMMF</button>
+      </nav>
+      <div class="output" id="output_container" />
+    </form>
   </body>
 </html>

@@ -3,7 +3,7 @@
   "name": "prisma-dmmf-viewer",
   "scripts": {
     "build": "build_wasm_bg/build.sh",
-    "start": "cd public; http-server",
+    "start": "cd docs; http-server",
     "format": "prettier --write ."
   },
   "keywords": [

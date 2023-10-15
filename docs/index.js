@@ -1,3 +1,5 @@
+import { jsonTree } from "./json-tree.js";
+
 document.querySelector("#schema").value = `
 generator client {
   provider = "prisma-client-js"
@@ -32,58 +34,33 @@ function getDMMF() {
 
   console.log(dmmf);
 
-  const outputElem = document.querySelector("output");
+  const outputElem = document.querySelector("#output_container");
   [...outputElem.childNodes].forEach(node => outputElem.removeChild(node));
 
-  outputElem.appendChild(element("div", displayJsonObj(dmmf), { className: "json" }));
-}
-
-function element(type, content, attrs) {
-  const elem = document.createElement(type);
-  if (typeof content === "string") {
-    elem.textContent = content;
-  } else if (Array.isArray(content)) {
-    content.forEach(child => elem.appendChild(child));
-  }
-  if (attrs) {
-    const { className, ...rest } = attrs;
-    const classNameList = Array.isArray(className) ? className : [className];
-    classNameList.forEach(className => elem.classList.add(className));
-    Object.entries(rest).forEach(([key, value]) => elem.setAttribute(key, value));
-  }
-  return elem;
-}
-
-function valueElements(name, value) {
-  const keyElement = element("span", `${name}`, { className: "key" });
-  if (value == null || ["boolean", "number", "string"].includes(typeof value)) {
-    return element("p", [keyElement, ...displayJsonPrimitive(value)]);
-  } else if (Array.isArray(value)) {
-    return element("details", [element("summary", [keyElement]), ...displayJsonArray(value)], { open: true });
-  } else {
-    return element("details", [element("summary", [keyElement]), ...displayJsonObj(value)], { open: true });
-  }
-}
-
-function displayJsonObj(obj) {
-  return Object.entries(obj).flatMap(([name, value]) => valueElements(name, value));
-}
-
-function displayJsonArray(list) {
-  return list.map((value, name) => valueElements(name, value));
-}
-
-function displayJsonPrimitive(value) {
-  return [
-    element("span", typeof value === "string" ? `"${value}"` : `${value}`, {
-      className: ["value", "primitive"],
+  outputElem.appendChild(
+    jsonTree(dmmf, {
+      tagName: "output",
+      attributes: {
+        for: "schema",
+      },
     }),
-  ];
+  );
+}
+
+function format() {
+  const schema = document.querySelector("#schema").value;
+  const params = JSON.stringify({ tabSize: 2 });
+
+  const formatted = prisma_schema.format(schema, params);
+  console.log(formatted);
+  document.querySelector("#schema").value = formatted;
 }
 
 document.querySelector("form#dmmf").addEventListener("submit", event => {
   event.preventDefault();
   getDMMF();
 });
+
+document.querySelector("#btn_format")?.addEventListener("click", () => format());
 
 getDMMF();

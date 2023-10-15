@@ -8,33 +8,41 @@
   box-sizing: border-box;
 }
 
-label {
-  display: flex;
-  flex-direction: column;
+body {
+  padding: 12px;
 }
 
-textarea#schema {
-  font-family: var(--font-monospace);
-}
+form {
+  & label {
+    display: flex;
+    flex-direction: column;
 
-.json {
-  font-family: var(--font-monospace);
-  font-size: 12px;
-  & details,
-  p {
-    margin-left: 1em;
+    & textarea {
+      padding: 12px;
+      font-family: var(--font-monospace);
+      flex: auto;
+    }
   }
 
-  & summary {
-    list-style-position: outside;
+  height: calc(100dvh - 24px);
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr max-content;
+  grid-template-areas:
+    "editor output"
+    "button output";
+
+  .editor {
+    grid-area: editor;
   }
 
-  & .key {
-    font-weight: bold;
+  .button {
+    grid-area: button;
   }
-
-  & .key::after {
-    display: inline;
-    content: ": ";
+  .output {
+    grid-area: output;
+    height: 100%;
+    overflow-y: auto;
   }
 }

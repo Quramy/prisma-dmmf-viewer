@@ -1,0 +1,23 @@
+.json-tree {
+  font-family: var(--font-monospace);
+  font-size: 12px;
+
+  & details,
+  p {
+    margin-left: 1em;
+  }
+
+  & summary {
+    list-style-position: outside;
+  }
+
+  .key {
+    font-weight: bold;
+  }
+
+  .key::after {
+    display: inline;
+    content: ": ";
+  }
+}
+
