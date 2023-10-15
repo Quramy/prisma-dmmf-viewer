@@ -1,0 +1,6 @@
+node_modules/
+*.sh
+*.wasm
+*.patch
+prisma_schema.js
+prisma_schema_build.js

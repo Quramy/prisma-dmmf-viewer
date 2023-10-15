@@ -1,0 +1,31 @@
+--- node_modules/@prisma/prisma-schema-wasm/src/prisma_schema_build.js	2023-10-15 15:50:36.000000000 +0900
++++ build_wasm_bg/prisma_schema.js	2023-10-15 22:09:06.000000000 +0900
+@@ -1,7 +1,8 @@
+ let imports = {};
+ imports['__wbindgen_placeholder__'] = module.exports;
+ let wasm;
+-const { TextDecoder, TextEncoder } = require(`util`);
++// const { TextDecoder, TextEncoder } = require(`util`);
++const { TextDecoder, TextEncoder } = globalThis;
+ 
+ let cachedTextDecoder = new TextDecoder('utf-8', { ignoreBOM: true, fatal: true });
+ 
+@@ -392,11 +393,11 @@
+     throw new Error(getStringFromWasm0(arg0, arg1));
+ };
+ 
+-const path = require('path').join(__dirname, 'prisma_schema_build_bg.wasm');
+-const bytes = require('fs').readFileSync(path);
+-
+-const wasmModule = new WebAssembly.Module(bytes);
+-const wasmInstance = new WebAssembly.Instance(wasmModule, imports);
+-wasm = wasmInstance.exports;
+-module.exports.__wasm = wasm;
++// const path = require('path').join(__dirname, 'prisma_schema_build_bg.wasm');
++// const bytes = require('fs').readFileSync(path);
++// 
++// const wasmModule = new WebAssembly.Module(bytes);
++// const wasmInstance = new WebAssembly.Instance(wasmModule, imports);
++// wasm = wasmInstance.exports;
++// module.exports.__wasm = wasm;
+ 

@@ -1,0 +1,40 @@
+:root {
+  --font-monospace: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+}
+
+:where(*, *::before, *::after) {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+}
+
+textarea#schema {
+  font-family: var(--font-monospace);
+}
+
+.json {
+  font-family: var(--font-monospace);
+  font-size: 12px;
+  & details,
+  p {
+    margin-left: 1em;
+  }
+
+  & summary {
+    list-style-position: outside;
+  }
+
+  & .key {
+    font-weight: bold;
+  }
+
+  & .key::after {
+    display: inline;
+    content: ": ";
+  }
+}
