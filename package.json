@@ -11,10 +11,8 @@
   ],
   "author": "Quramy",
   "license": "MIT",
-  "dependencies": {
-    "@prisma/prisma-schema-wasm": "5.5.0-16.f44b62756e369de9a75621e9cdc1a1840b3b59b2"
-  },
   "devDependencies": {
+    "@prisma/internals": "5.6.0",
     "http-server": "14.1.1",
     "prettier": "3.0.3"
   }
